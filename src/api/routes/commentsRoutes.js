@@ -1,10 +1,9 @@
 module.exports = (app) => {
-    const commentController = require('../controllers/postController');
-    const postController = require('../controllers/postController');
+    const commentController = require('../controllers/commentsController');
 
     app.route('/posts/:post_id/comments')
-        .get(postController.get_all_comments)
-        .post(postController.create_a_comment);
+        .get(commentsController.get_all_comments)
+        .post(commentsController.create_a_comment);
 
     app.route('/comments/:comment_id')
         .get(commentController.get_a_comment)

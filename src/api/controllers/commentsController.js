@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
-const Post = mongoose.model("Post");
-const commentsModel = require('../api/models/commentsModel');
+const commentModel = require('../models/commentModel');
+const Comment = mongoose.model("Comment");
 
-exports.list_all_posts = (req, res) => {
-    Post.find({}, (error, posts) => {
-        if (error) {
+exports.get_all_comments = (req, res) => {
+    Comment.find({post_id: req.params.post_id}, (error, posts) => {
+        if(error){
             res.status(500);
             console.log(error);
             res.json({message: "Erreur serveur."});
-        } else {
+        }
+        else {
             res.status(200);
             res.json(posts);
         }
